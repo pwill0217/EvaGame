@@ -1,0 +1,91 @@
+.root {
+    -fx-background-color: black;
+    -fx-cursor: none;
+}
+
+.label {
+    -fx-font-family: 'Roboto Condensed';
+    -fx-font-size: 12px;
+    -fx-text-fill: #fa0;
+    -fx-border-color: rgba(255, 102, 0, 0.7);
+    -fx-border-width: 3px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(255, 102, 0, 0.5), 10, 0, 0, 0);
+    -fx-padding: 10px;
+}
+
+.label.danger {
+    -fx-text-fill: #f30;
+    -fx-border-color: rgba(255, 0, 0, 0.7);
+    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.5), 10, 0, 0, 0);
+}
+
+.label.blink {
+    -fx-background-color: transparent; /* Set background to transparent */
+    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.5), 5, 0, 0, 0);
+    -fx-border-radius: 5px;
+    -fx-animation: blink 2s infinite alternate;
+}
+
+@keyframes blink {
+    0% { -fx-opacity: 1; }
+    100% { -fx-opacity: 0.5; }
+}
+
+.hex {
+    -fx-background-color: #f30;
+    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.5), 5, 0, 0, 0);
+    -fx-shape: "M 10 0 L 20 10 L 10 20 L 0 10 Z";
+}
+
+body {
+    background: #000;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .hex-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensures it's behind the game content */
+    overflow: hidden;
+  }
+  
+  .hex-row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .hex {
+    --edge-size: 40px;
+    --gutter-size: 4px;
+    width: var(--edge-size);
+    height: calc(var(--edge-size) * 1.75); /* 1.75 is the diagonal size for a hexagon */
+    margin: var(--gutter-size);
+    background-color: rgba(255, 0, 0, 0.2); /* Set to a low opacity */
+    position: relative;
+  }
+  
+  .hex::before,
+  .hex::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    border-left: calc(var(--edge-size) / 2) solid transparent;
+    border-right: calc(var(--edge-size) / 2) solid transparent;
+  }
+  
+  .hex::before {
+    bottom: 100%;
+    border-bottom: calc(var(--edge-size) / 2) solid rgba(255, 0, 0, 0.2);
+  }
+  
+  .hex::after {
+    top: 100%;
+    width: 0;
+    border-top: calc(var(--edge-size) / 2) solid rgba(255, 0, 0, 0.2);
+  }
+  
